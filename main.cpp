@@ -1,7 +1,11 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+
 #include "Unidad.h"
+#include "Guerrero.h"
+#include "Arquero.h"
+#include "Mago.h"
 
 using namespace std;
 
@@ -9,43 +13,47 @@ int main()
 {
     srand(time(nullptr));
 
-    Unidad guerrero(100, 25, 2);
-    Unidad orco(120, 20, 3);
+    // Crear personajes
+    Guerrero guerrero("Haaland", 120, 60, 25, 2, "Espada corta", 10);
+    Arquero arquero("Hawkeye", 90, 80, 20, 2, 85);
+    Mago mago("Hermenejildo", 80, 120, 15, 2, 40);
 
-    cout << "=== Estado inicial ===" << endl;
+    cout << "======================================" << endl;
+    cout << "      PERSONAJES DEL JUEGO" << endl;
+    cout << "======================================" << endl;
 
-    cout << "\nGuerrero" << endl;
+    guerrero.imprimir();
+    arquero.imprimir();
+    mago.imprimir();
+
+    cout << "\n======================================" << endl;
+    cout << "        COMIENZA LA BATALLA" << endl;
+    cout << "======================================\n" << endl;
+
+    // Guerrero ataca al Mago
+    cout << "\n===== TURNO DEL GUERRERO =====" << endl;
+    guerrero.atacar(mago);
+
+    cout << "\nEstado del Mago:\n";
+    mago.imprimir();
+
+    // Mago ataca al Arquero
+    cout << "\n===== TURNO DEL MAGO =====" << endl;
+    mago.atacar(arquero);
+
+    cout << "\nEstado del Arquero:\n";
+    arquero.imprimir();
+
+    // Arquero ataca al Guerrero
+    cout << "\n===== TURNO DEL ARQUERO =====" << endl;
+    arquero.atacar(guerrero);
+
+    cout << "\nEstado del Guerrero:\n";
     guerrero.imprimir();
 
-    cout << "Orco" << endl;
-    orco.imprimir();
-
-    cout << "\n=== COMIENZA LA BATALLA ===\n" << endl;
-
-     while (guerrero.estaVivo() && orco.estaVivo())
-    {
-        cout << "El guerrero ataca al orco." << endl;
-        guerrero.atacar(orco);
-
-        cout << "\nEstado del orco:" << endl;
-        orco.imprimir();
-
-        if (orco.getSalud() == 0)
-            break;
-
-        cout << "El orco ataca al guerrero." << endl;
-        orco.atacar(guerrero);
-
-        cout << "\nEstado del guerrero:" << endl;
-        guerrero.imprimir();
-    }
-
-    cout << "=== FIN DE LA BATALLA ===" << endl;
-
-    if (guerrero.estaVivo() > 0)
-        cout << "¡El guerrero ha ganado!" << endl;
-    else
-        cout << "¡El orco ha ganado!" << endl;
+    cout << "\n======================================" << endl;
+    cout << "         FIN DE LA DEMOSTRACION" << endl;
+    cout << "======================================" << endl;
 
     return 0;
 }

@@ -3,39 +3,46 @@
 
 class Unidad
 {
-private:
+protected:
     std::string nombre;
 
     int vida;
     int salud;
+    int mana;
     int ataque;
     int nivel;
 
 public:
 
     Unidad();
-    Unidad(std::string nombre, int vida, int ataque, int nivel);
+    Unidad(std::string nombre, int vida, int mana, int ataque, int nivel);
+
+    virtual ~Unidad() = default;
 
     // Getters
     std::string getNombre() const;
     int getVida() const;
     int getSalud() const;
+    int getMana() const;
     int getAtaque() const;
     int getNivel() const;
 
     // Setters
-    void setNombre(std::string nombre);
     void setVida(int vida);
     void setSalud(int salud);
+    void setMana(int mana);
     void setAtaque(int ataque);
     void setNivel(int nivel);
 
-    // Métodos
+    bool estaVivo() const;
+
+    //Metodos de ataque y defensa
+    virtual int calculaAtaque(const Unidad& objetivo) const;
+    virtual void recibeAtaque(int ptosAtaque);
+    virtual void imprimir() const;
+
+    virtual void atacar(Unidad& objetivo);
+
     int porcentajeSalud() const;
     void imprimeBarra() const;
-    int calculaAtaque(const Unidad &objetivo) const;
-    void recibeAtaque(int ptosAtaque);
-    void atacar(Unidad &objetivo);
-    bool estaVivo() const;
-    void imprimir() const;
 };
