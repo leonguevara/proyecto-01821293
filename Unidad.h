@@ -1,8 +1,11 @@
 #pragma once
+#include <string>
 
 class Unidad
 {
 private:
+    std::string nombre;
+
     int vida;
     int salud;
     int ataque;
@@ -10,17 +13,18 @@ private:
 
 public:
 
-    // Constructores
     Unidad();
-    Unidad(int vida, int ataque, int nivel);
+    Unidad(std::string nombre, int vida, int ataque, int nivel);
 
     // Getters
+    std::string getNombre() const;
     int getVida() const;
     int getSalud() const;
     int getAtaque() const;
     int getNivel() const;
 
     // Setters
+    void setNombre(std::string nombre);
     void setVida(int vida);
     void setSalud(int salud);
     void setAtaque(int ataque);
@@ -29,8 +33,9 @@ public:
     // Métodos
     int porcentajeSalud() const;
     void imprimeBarra() const;
-    int calculaAtaque(Unidad &objetivo);
+    int calculaAtaque(const Unidad &objetivo) const;
     void recibeAtaque(int ptosAtaque);
-    void atacar(const Unidad &objetivo) const;
+    void atacar(Unidad &objetivo);
+    bool estaVivo() const;
     void imprimir() const;
 };

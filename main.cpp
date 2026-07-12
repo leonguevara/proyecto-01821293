@@ -22,7 +22,7 @@ int main()
 
     cout << "\n=== COMIENZA LA BATALLA ===\n" << endl;
 
-     while (guerrero.getSalud() > 0 && orco.getSalud() > 0)
+     while (guerrero.estaVivo() && orco.estaVivo())
     {
         cout << "El guerrero ataca al orco." << endl;
         guerrero.atacar(orco);
@@ -42,7 +42,7 @@ int main()
 
     cout << "=== FIN DE LA BATALLA ===" << endl;
 
-    if (guerrero.getSalud() > 0)
+    if (guerrero.estaVivo() > 0)
         cout << "¡El guerrero ha ganado!" << endl;
     else
         cout << "¡El orco ha ganado!" << endl;
